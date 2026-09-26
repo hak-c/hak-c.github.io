@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAK-C — Halkın Adalet ve Kurtuluş Cephesi</title>
+<link rel="icon" href="logo.png" type="image/png">
 <style>
-  /* ============================================================
-     TEMEL
-     ============================================================ */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --kizil: #8b0000;
@@ -23,11 +17,10 @@
     --beyaz: #ffffff;
     --siyah: #0a0000;
     --gri: #d0d0d0;
+    --telegram: #229ED9;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
@@ -42,7 +35,7 @@
   }
 
   /* ============================================================
-     ÜST BANNER
+     HEADER — Logo + Başlık
      ============================================================ */
   header {
     background: linear-gradient(180deg, var(--kizil) 0%, var(--kizil-derin) 100%);
@@ -66,11 +59,35 @@
     position: absolute;
     bottom: 8px; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      var(--beyaz) 20%,
-      var(--beyaz) 80%,
-      transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--beyaz) 20%, var(--beyaz) 80%, transparent 100%);
+  }
+
+  .header-icerik {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(245, 197, 24, 0.6));
+    animation: logoGlow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes logoGlow {
+    from { filter: drop-shadow(0 0 15px rgba(245,197,24,0.5)); }
+    to   { filter: drop-shadow(0 0 30px rgba(245,197,24,1)); }
+  }
+
+  .header-metin {
+    text-align: left;
+    min-width: 300px;
   }
 
   .logo {
@@ -111,15 +128,53 @@
   }
 
   /* ============================================================
-     ÜST ÇİZGİ — beyaz ayırıcı
+     TELEGRAM BANDI
+     ============================================================ */
+  .telegram-bandi {
+    background: linear-gradient(90deg, var(--siyah) 0%, #1a1a1a 50%, var(--siyah) 100%);
+    border-top: 2px solid var(--sari);
+    border-bottom: 2px solid var(--sari);
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .telegram-bandi a {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--sari);
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border: 2px solid var(--telegram);
+    background: rgba(34, 158, 217, 0.1);
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(34, 158, 217, 0.3);
+  }
+
+  .telegram-bandi a:hover {
+    background: var(--telegram);
+    color: var(--beyaz);
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(34, 158, 217, 0.8);
+  }
+
+  .telegram-ikon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
+
+  /* ============================================================
+     BEYAZ ÇİZGİ
      ============================================================ */
   .beyaz-cizgi {
     height: 2px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      var(--beyaz) 15%,
-      var(--beyaz) 85%,
-      transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--beyaz) 15%, var(--beyaz) 85%, transparent 100%);
     margin: 0 auto;
     max-width: 1100px;
   }
@@ -176,12 +231,7 @@
     padding: 50px 25px 80px;
   }
 
-  /* ============================================================
-     BÖLÜM BAŞLIKLARI
-     ============================================================ */
-  .bolum {
-    margin-bottom: 60px;
-  }
+  .bolum { margin-bottom: 60px; }
 
   .bolum-baslik {
     font-family: 'Courier New', monospace;
@@ -215,7 +265,7 @@
   }
 
   /* ============================================================
-     MANİFESTO METNİ
+     MANİFESTO
      ============================================================ */
   .manifesto-giris {
     background: rgba(0, 0, 0, 0.35);
@@ -240,7 +290,7 @@
   }
 
   /* ============================================================
-     KİME / NEYE KARŞI — KARTLAR
+     KARTLAR
      ============================================================ */
   .kart-listesi {
     display: grid;
@@ -346,6 +396,14 @@
     text-align: center;
   }
 
+  .footer-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 15px rgba(245, 197, 24, 0.7));
+  }
+
   footer .logo-kucuk {
     font-family: 'Courier New', monospace;
     font-size: 32px;
@@ -367,27 +425,41 @@
 
   footer .cizgi {
     height: 1px;
-    background: linear-gradient(90deg,
-      transparent 0%,
-      var(--beyaz) 50%,
-      transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--beyaz) 50%, transparent 100%);
     margin: 20px auto;
     max-width: 400px;
   }
 
-  footer .kurgu-notu {
-    font-size: 11px;
-    color: #666;
-    font-style: italic;
-    max-width: 500px;
-    margin: 0 auto;
-    line-height: 1.6;
+  footer .telegram-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 8px 18px;
+    background: rgba(34, 158, 217, 0.15);
+    border: 2px solid var(--telegram);
+    color: var(--telegram);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  footer .telegram-footer:hover {
+    background: var(--telegram);
+    color: var(--beyaz);
   }
 
   /* ============================================================
      RESPONSIVE
      ============================================================ */
   @media (max-width: 700px) {
+    .header-icerik { flex-direction: column; gap: 16px; }
+    .header-metin { text-align: center; }
+    .header-logo { width: 90px; height: 90px; }
     .logo { font-size: 40px; letter-spacing: 4px; }
     .tagline { font-size: 11px; letter-spacing: 2px; }
     nav a { padding: 12px 14px; font-size: 11px; letter-spacing: 1px; }
@@ -396,25 +468,14 @@
     .kart { padding: 18px; }
     .kart-baslik { font-size: 15px; }
     .slogan-bandi p { font-size: 16px; letter-spacing: 2px; }
+    .telegram-bandi a { font-size: 12px; padding: 8px 16px; letter-spacing: 2px; }
   }
 
-  /* ============================================================
-     SEÇİM RENGİ
-     ============================================================ */
-  ::selection {
-    background: var(--sari);
-    color: var(--kizil-derin);
-  }
+  ::selection { background: var(--sari); color: var(--kizil-derin); }
 
-  /* ============================================================
-     SCROLLBAR
-     ============================================================ */
   ::-webkit-scrollbar { width: 12px; }
   ::-webkit-scrollbar-track { background: var(--siyah); }
-  ::-webkit-scrollbar-thumb {
-    background: var(--kizil-parlak);
-    border: 2px solid var(--sari);
-  }
+  ::-webkit-scrollbar-thumb { background: var(--kizil-parlak); border: 2px solid var(--sari); }
   ::-webkit-scrollbar-thumb:hover { background: var(--sari); }
 </style>
 </head>
@@ -424,10 +485,28 @@
      HEADER
      ============================================================ -->
 <header>
-  <div class="logo">HAK-C</div>
-  <div class="tagline">Halkın Adalet ve Kurtuluş Cephesi</div>
-  <div class="slogan">"Ezilenlerin Sesi, Geleceğin Öfkesi"</div>
+  <div class="header-icerik">
+    <img src="logo.png" alt="HAK-C Logo" class="header-logo"
+         onerror="this.style.display='none'">
+    <div class="header-metin">
+      <div class="logo">HAK-C</div>
+      <div class="tagline">Halkın Adalet ve Kurtuluş Cephesi</div>
+      <div class="slogan">"Ezilenlerin Sesi, Geleceğin Öfkesi"</div>
+    </div>
+  </div>
 </header>
+
+<!-- ============================================================
+     TELEGRAM BANDI
+     ============================================================ -->
+<div class="telegram-bandi">
+  <a href="https://t.me/+z7iWP8eIjco5NDYy" target="_blank" rel="noopener">
+    <svg class="telegram-ikon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
+    </svg>
+    Telegram Kanalımıza Katıl
+  </a>
+</div>
 
 <div class="beyaz-cizgi"></div>
 
@@ -612,11 +691,13 @@
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-      <a href="#" style="
-        display: inline-block;
-        padding: 16px 40px;
-        background: var(--sari);
-        color: var(--kizil-derin);
+      <a href="https://t.me/+z7iWP8eIjco5NDYy" target="_blank" rel="noopener" style="
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 44px;
+        background: var(--telegram);
+        color: var(--beyaz);
         text-decoration: none;
         font-family: 'Courier New', monospace;
         font-size: 16px;
@@ -626,9 +707,12 @@
         border: 3px solid var(--beyaz);
         transition: all 0.3s;
         box-shadow: 4px 4px 0 var(--siyah);
-      " onmouseover="this.style.background='var(--kizil-parlak)';this.style.color='var(--sari)';"
-         onmouseout="this.style.background='var(--sari)';this.style.color='var(--kizil-derin)';">
-        ▸ Bize Ulaş
+      " onmouseover="this.style.transform='scale(1.05)';this.style.boxShadow='0 0 30px var(--telegram), 4px 4px 0 var(--siyah)';"
+         onmouseout="this.style.transform='scale(1)';this.style.boxShadow='4px 4px 0 var(--siyah)';">
+        <svg style="width: 28px; height: 28px; fill: currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
+        </svg>
+        Telegram'a Katıl
       </a>
     </div>
   </section>
@@ -639,6 +723,8 @@
      FOOTER
      ============================================================ -->
 <footer>
+  <img src="logo.png" alt="HAK-C Logo" class="footer-logo"
+       onerror="this.style.display='none'">
   <div class="logo-kucuk">HAK-C</div>
   <div class="alt-yazi">Halkın Adalet ve Kurtuluş Cephesi</div>
 
@@ -649,13 +735,12 @@
     "Ne efendimiz var, ne efendimiz olacak."
   </p>
 
-  <div class="cizgi"></div>
-
-  <p class="kurgu-notu">
-    ⚠ Bu site <strong>tamamen kurgusal</strong> bir içerik çalışmasıdır.
-    Gerçek bir örgütü, kişiyi veya olayı temsil etmez.
-    Yalnızca tasarım ve metin örneği olarak hazırlanmıştır.
-  </p>
+  <a href="https://t.me/+z7iWP8eIjco5NDYy" target="_blank" rel="noopener" class="telegram-footer">
+    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.87 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/>
+    </svg>
+    @HAK-C Kanal
+  </a>
 </footer>
 
 </body>
